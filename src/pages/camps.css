@@ -1,0 +1,23 @@
+.camps-bg {
+  min-height: 100vh;
+  background: linear-gradient(114deg,#fcf9ff 32%, #eaf7fa 100%);
+}
+.camps-title {
+  letter-spacing: 1.2px;
+  background: linear-gradient(93deg, #fa4c7c 38%, #7138fa 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size:2.1rem; font-weight:900;
+}
+.camp-card {
+  border-radius: 22px;
+  background: #fff;
+  box-shadow:0 8px 32px #cabffa19!important;
+  border: none!important;
+  transition: transform .12s, box-shadow .1s;
+}
+.camp-card:hover {
+  transform: scale(1.035) translateY(-7px);
+  box-shadow: 0 19px 40px #874ffc24!important;
+}
+.card-title {font-weight:700;}

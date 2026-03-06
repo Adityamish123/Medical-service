@@ -1,0 +1,41 @@
+.donate-bg {
+  min-height: 100vh;
+  background: linear-gradient(115deg,#fff5fd 50%, #eaf7fa 100%);
+}
+
+.donate-card {
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 8px 38px #db578b17, 0 2px 2.5px #874ffc14;
+  border: 0;
+}
+.donate-heroicon {
+  color: #fa4c7c;
+  font-size: 3.5rem;
+  background:linear-gradient(120deg,#ffdafa 55%,#b8eafc 100%);
+  border-radius:19px;
+  box-shadow:0 5px 18px #fa4c7c24;
+  margin-bottom:8px;
+}
+.donate-hero-title {
+  letter-spacing: 1.2px;
+  background: linear-gradient(90deg,#fa4c7c 32%, #873ffc 89%);
+   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+  font-size:2.2rem;
+}
+.replit-btn-main {
+  background: linear-gradient(92deg,#fa4c7c 30%, #35e3fc 80%)!important;
+  color: #fff!important;
+  border: 0 !important;
+  font-weight: 700;
+  border-radius: 16px;
+  box-shadow:0 3px 18px #fda7e81a;
+}
+.replit-btn-main:hover {
+  background: linear-gradient(91deg,#35e3fc 35%, #fa4c7c 80%)!important;
+  color: #fff !important;
+  box-shadow:0 8px 28px #873ffc29;
+}
+input,select,textarea { border-radius:14px !important;}

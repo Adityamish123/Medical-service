@@ -1,0 +1,18 @@
+.findblood-bg {
+  min-height: 100vh;
+  background: linear-gradient(110deg,#ffebfd 80%,#b7eafc 100%);
+  padding:0;
+}
+.findblood-card {
+  background: rgba(255,255,255,0.94);
+  border-radius: 26px;
+  box-shadow: 0 8px 38px #db578b28;
+}
+input:focus,select:focus {
+  border-color: #e96091 !important;
+  box-shadow:0 0 0 2px #ffd5e6a9 !important;
+  outline: none !important;
+}
+@media (max-width:600px) {
+  .findblood-card{border-radius:17px;padding:0.6rem;}
+}
