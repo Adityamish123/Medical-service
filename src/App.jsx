@@ -8,6 +8,7 @@ import FindBlood from './pages/Findblood';
 import Donate from './pages/Donate';
 import About from './pages/About';
 import Camps from './pages/Camps';
+import BloodBankDashboard from "./pages/BloodBank/BloodBankDashboard";
 
 function App() {
   return (
@@ -20,11 +21,11 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/blood bank/dashboard" element={<BloodBankDashboard />} />
             <Route path="/find-blood" element={<FindBlood />} />
             <Route path="/donate" element={<Donate />} />
             <Route path="/about" element={<About />} />
             <Route path="/camps" element={<Camps />} />
+            <Route path="/bloodbank" element={<BloodBankDashboard />} />
 
           </Routes>
         </main>

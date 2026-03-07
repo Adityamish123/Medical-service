@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import Inventory from './Inventory'; 
-import './BloodBankDashboard.css'; // Ensure exact casing
+import "./BloodBankDashboard.css";
 
 const BloodBankDashboard = () => {
   return (
