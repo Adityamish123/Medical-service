@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import NavBar from "./components/Navbar";    
-import HospitalDashboard from './pages/Hospital/HospitalDashboard';
 import Inventory from './pages/Blood-bank/Inventory';
 import Home from './pages/Home';                
 import Login from './pages/Login';
@@ -25,7 +24,6 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/blood bank/dashboard" element={<BloodBankDashboard />} />
-            <Route path="/hospital/dashboard" element={<HospitalDashboard />} />
             <Route path="/find-blood" element={<FindBlood />} />
             <Route path="/donate" element={<Donate />} />
             <Route path="/about" element={<About />} />
