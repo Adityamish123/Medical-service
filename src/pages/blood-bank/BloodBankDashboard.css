@@ -1,6 +1,7 @@
 /* Full-screen background image */
 .dashboard-container {
-  background: url(../../assets/project11.jpg) no-repeat center center/cover;
+  background: url('../../assets/project11.jpg') no-repeat center center;
+  background-size: cover; /* explicit background-size for clarity */
   min-height: 100vh;
   width: 100%;
   display: flex;
@@ -13,17 +14,20 @@
   color: #fff;
   font-weight: 700;
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+  margin: 0; /* ensures no extra spacing */
 }
 
 /* Card styling */
 .dashboard-card {
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  background-color: #fff; /* ensures contrast if card has content */
 }
 
 .dashboard-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
 }
 
 /* Responsive text */

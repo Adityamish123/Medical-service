@@ -3,6 +3,7 @@ import { Container, Form, Button, Row, Col, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaHandHoldingHeart, FaUserPlus, FaHospitalAlt } from 'react-icons/fa';
 import './register.css';
+import bgImg from '../assets/bg10.jpg';
 
 const Register = () => {
   const [role, setRole] = useState('donor');
@@ -18,92 +19,92 @@ const Register = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    // Add actual implementation or API here
     alert(`Welcome, ${name}! Registration complete.`);
   };
 
-  // Additional Donor fields
   const renderDonorFields = () => (
     <>
       <Row>
         <Col md={6}>
-          <Form.Group className="mb-3" controlId="bloodGroup">
+          <Form.Group className="mb-3">
             <Form.Label>Blood Group</Form.Label>
-            <Form.Select value={bloodGroup} onChange={(e) => setBloodGroup(e.target.value)}>
+            <Form.Select value={bloodGroup} onChange={e => setBloodGroup(e.target.value)}>
               <option>Select Blood Group</option>
-              <option value="A+">A+</option>
-              <option value="A-">A-</option>
-              <option value="B+">B+</option>
-              <option value="B-">B-</option>
-              <option value="AB+">AB+</option>
-              <option value="AB-">AB-</option>
-              <option value="O+">O+</option>
-              <option value="O-">O-</option>
+              {['A+','A-','B+','B-','AB+','AB-','O+','O-'].map(bg => (
+                <option key={bg} value={bg}>{bg}</option>
+              ))}
             </Form.Select>
           </Form.Group>
         </Col>
         <Col md={6}>
-          <Form.Group className="mb-3" controlId="age">
+          <Form.Group className="mb-3">
             <Form.Label>Age</Form.Label>
             <Form.Control
               type="number"
               placeholder="Enter your age"
               value={age}
-              onChange={(e) => setAge(e.target.value)}
+              onChange={e => setAge(e.target.value)}
             />
           </Form.Group>
         </Col>
       </Row>
-      <Form.Group className="mb-3" controlId="gender">
+      <Form.Group className="mb-3">
         <Form.Label>Gender</Form.Label>
-        <Form.Select value={gender} onChange={(e) => setGender(e.target.value)}>
+        <Form.Select value={gender} onChange={e => setGender(e.target.value)}>
           <option>Select Gender</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
           <option value="Other">Other</option>
         </Form.Select>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="disease">
+      <Form.Group className="mb-3">
         <Form.Label>Any Major Disease (if any)</Form.Label>
         <Form.Control
           type="text"
           placeholder="e.g., Diabetes, Hypertension"
           value={disease}
-          onChange={(e) => setDisease(e.target.value)}
+          onChange={e => setDisease(e.target.value)}
         />
       </Form.Group>
     </>
   );
 
-  // Pick icon depending on role
-  const roleIcon = role === 'donor'
-    ? <FaHandHoldingHeart className="register-bigicon text-danger"/>
-    : <FaHospitalAlt className="register-bigicon text-primary"/>;
+  const getRoleIcon = () => {
+    if (role === 'donor') return <FaHandHoldingHeart className="register-bigicon text-danger" />;
+    if (role === 'hospital') return <FaHospitalAlt className="register-bigicon text-primary" />;
+    return <FaHandHoldingHeart className="register-bigicon text-warning" />;
+  };
 
   return (
-    <div className="login-bg-vibrant">
+    <div className="register-new-bg">
       {/* Background image */}
-      <img src="src/assets/bg10.jpg" alt="" className="login-bg-img" />
+      <img
+        src={bgImg}
+        alt="background"
+        className="register-bg-img"
+      />
+
       <Container className="register-content-box">
         <Card className="register-accent-card shadow border-0">
           <Row className="g-0 align-items-stretch">
-            {/* Icon/Accent column (hidden on mobile, icon on top mobile) */}
             <Col md={4} className="register-accent-col d-none d-md-flex flex-column justify-content-center align-items-center">
-              {roleIcon}
+              {getRoleIcon()}
               <h4 className="mt-2 text-white text-center fw-bold">
-                {role === "donor" ? "Become a Lifesaver" : role === "bloodbank" ? "Blood Bank Signup" : "Hospital Signup"}
+                {role === 'donor'
+                  ? 'Become a Lifesaver'
+                  : role === 'bloodbank'
+                  ? 'Blood Bank Signup'
+                  : 'Hospital Signup'}
               </h4>
             </Col>
-            {/* Main registration form */}
+
             <Col md={8} xs={12}>
               <Card.Body className="p-4">
-                <div className="d-md-none text-center mb-3">
-                  {roleIcon}
-                </div>
+                <div className="d-md-none text-center mb-3">{getRoleIcon()}</div>
                 <h2 className="mb-2 fw-bold text-center">
-                  Create your Account
-                  <FaUserPlus className="ms-2 register-blinkicon" />
+                  Create your Account <FaUserPlus className="ms-2 register-blinkicon" />
                 </h2>
+
                 <Form onSubmit={submitHandler}>
                   <Form.Group className="mb-3">
                     <Form.Label>Register as a</Form.Label>
@@ -113,7 +114,8 @@ const Register = () => {
                       <option value="bloodbank">Blood Bank</option>
                     </Form.Select>
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="name">
+
+                  <Form.Group className="mb-3">
                     <Form.Label>{role === 'donor' ? 'Full Name' : 'Organization Name'}</Form.Label>
                     <Form.Control
                       type="text"
@@ -123,7 +125,8 @@ const Register = () => {
                       required
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="emailReg">
+
+                  <Form.Group className="mb-3">
                     <Form.Label>Email Address</Form.Label>
                     <Form.Control
                       type="email"
@@ -133,9 +136,10 @@ const Register = () => {
                       required
                     />
                   </Form.Group>
+
                   <Row>
                     <Col md={6}>
-                      <Form.Group className="mb-3" controlId="contact">
+                      <Form.Group className="mb-3">
                         <Form.Label>Contact Number</Form.Label>
                         <Form.Control
                           type="text"
@@ -147,7 +151,7 @@ const Register = () => {
                       </Form.Group>
                     </Col>
                     <Col md={6}>
-                      <Form.Group className="mb-3" controlId="passwordReg">
+                      <Form.Group className="mb-3">
                         <Form.Label>Password</Form.Label>
                         <Form.Control
                           type="password"
@@ -159,7 +163,8 @@ const Register = () => {
                       </Form.Group>
                     </Col>
                   </Row>
-                  <Form.Group className="mb-3" controlId="address">
+
+                  <Form.Group className="mb-3">
                     <Form.Label>Address / Location</Form.Label>
                     <Form.Control
                       as="textarea"
@@ -170,18 +175,21 @@ const Register = () => {
                       required
                     />
                   </Form.Group>
+
                   {role === 'donor' && renderDonorFields()}
+
                   <div className="d-grid mt-3">
                     <Button type="submit" variant="danger" size="lg">
                       Register
                     </Button>
                   </div>
+
+                  <Row className="py-3">
+                    <Col className="text-center">
+                      Already registered? <Link to="/login" className="register-accent-link">Login here</Link>
+                    </Col>
+                  </Row>
                 </Form>
-                <Row className="py-3">
-                  <Col className="text-center">
-                    Already registered? <Link to="/login" className="register-accent-link">Login here</Link>
-                  </Col>
-                </Row>
               </Card.Body>
             </Col>
           </Row>

@@ -1,23 +1,54 @@
+/* Full-screen Camps background */
 .camps-bg {
   min-height: 100vh;
-  background: linear-gradient(114deg,#fcf9ff 32%, #eaf7fa 100%);
+  background: linear-gradient(114deg, #fcf9ff 32%, #eaf7fa 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 2rem 0;
 }
+
+/* Camps Section Title */
 .camps-title {
+  font-size: 2.1rem;
+  font-weight: 900;
   letter-spacing: 1.2px;
   background: linear-gradient(93deg, #fa4c7c 38%, #7138fa 90%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size:2.1rem; font-weight:900;
+  color: #7138fa; /* fallback for non-supporting browsers */
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
+
+/* Individual Camp Cards */
 .camp-card {
   border-radius: 22px;
   background: #fff;
-  box-shadow:0 8px 32px #cabffa19!important;
-  border: none!important;
-  transition: transform .12s, box-shadow .1s;
+  box-shadow: 0 8px 32px rgba(202, 191, 250, 0.1);
+  border: none;
+  transition: transform 0.12s ease, box-shadow 0.1s ease;
+  padding: 1rem;
 }
+
 .camp-card:hover {
   transform: scale(1.035) translateY(-7px);
-  box-shadow: 0 19px 40px #874ffc24!important;
+  box-shadow: 0 19px 40px rgba(135, 79, 252, 0.14);
 }
-.card-title {font-weight:700;}
+
+/* Card Title inside Camp Cards */
+.card-title {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .camps-title {
+    font-size: 1.8rem;
+  }
+  .camp-card {
+    margin-bottom: 1rem;
+  }
+}

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Table, Button, Container, Row, Col } from 'react-bootstrap';
-// Hum ek modal component banayenge blood unit add karne ke liye
+// Future modal component for adding new blood units
 // import AddNewBloodUnitModal from '../../components/AddNewBloodUnitModal'; 
 
 const Inventory = () => {
-  // Abhi ke liye dummy data
+  // Dummy blood stock data
   const [bloodStock, setBloodStock] = useState([
     { id: 'BLD001', donorId: 'DNR056', bloodGroup: 'A+', dateOfIntake: '2024-08-10', status: 'Available' },
     { id: 'BLD002', donorId: 'DNR089', bloodGroup: 'O+', dateOfIntake: '2024-08-11', status: 'Available' },
@@ -15,6 +15,7 @@ const Inventory = () => {
 
   return (
     <Container fluid className="mt-4">
+      {/* Header Row */}
       <Row className="align-items-center mb-3">
         <Col>
           <h3>Blood Inventory</h3>
@@ -25,7 +26,8 @@ const Inventory = () => {
           </Button>
         </Col>
       </Row>
-      
+
+      {/* Inventory Table */}
       <Table striped bordered hover responsive>
         <thead>
           <tr>
@@ -46,16 +48,21 @@ const Inventory = () => {
               <td>{unit.dateOfIntake}</td>
               <td>{unit.status}</td>
               <td>
-                <Button variant="secondary" size="sm">Update</Button>
+                <Button variant="secondary" size="sm">
+                  Update
+                </Button>
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
 
-      {/* 
-        Yeh Modal component hum agle step me bana sakte hain.
-        <AddNewBloodUnitModal show={showModal} handleClose={() => setShowModal(false)} /> 
+      {/* Future Modal */}
+      {/*
+        <AddNewBloodUnitModal 
+          show={showModal} 
+          handleClose={() => setShowModal(false)} 
+        /> 
       */}
     </Container>
   );

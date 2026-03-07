@@ -1,44 +1,51 @@
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import Inventory from './Inventory'; 
-import './BloodBankDashboard.css'; 
+import './BloodBankDashboard.css'; // Ensure exact casing
 
 const BloodBankDashboard = () => {
   return (
     <div className="dashboard-container">
       <Container fluid className="text-center">
+        
+        {/* Dashboard Title */}
         <h1 className="dashboard-title my-4">Blood Bank Dashboard</h1>
-        <Row>
-          <Col md={4} sm={12}>
-            <Card bg="danger" text="white" className="mb-3 dashboard-card">
-              <Card.Body>
+        
+        {/* Stats Cards */}
+        <Row className="mb-4">
+          <Col md={4} sm={12} className="mb-3">
+            <Card bg="danger" text="white" className="dashboard-card h-100">
+              <Card.Body className="d-flex flex-column justify-content-center align-items-center">
                 <Card.Title>Total Units</Card.Title>
                 <Card.Text className="fs-3">150</Card.Text>
               </Card.Body>
             </Card>
           </Col>
-          <Col md={4} sm={12}>
-            <Card bg="success" text="white" className="mb-3 dashboard-card">
-              <Card.Body>
+          <Col md={4} sm={12} className="mb-3">
+            <Card bg="success" text="white" className="dashboard-card h-100">
+              <Card.Body className="d-flex flex-column justify-content-center align-items-center">
                 <Card.Title>Requests Fulfilled</Card.Title>
                 <Card.Text className="fs-3">85</Card.Text>
               </Card.Body>
             </Card>
           </Col>
-          <Col md={4} sm={12}>
-            <Card bg="warning" text="dark" className="mb-3 dashboard-card">
-              <Card.Body>
+          <Col md={4} sm={12} className="mb-3">
+            <Card bg="warning" text="dark" className="dashboard-card h-100">
+              <Card.Body className="d-flex flex-column justify-content-center align-items-center">
                 <Card.Title>Pending Requests</Card.Title>
                 <Card.Text className="fs-3">12</Card.Text>
               </Card.Body>
             </Card>
           </Col>
         </Row>
+
+        {/* Inventory Component */}
         <Row>
           <Col>
             <Inventory />
           </Col>
         </Row>
+
       </Container>
     </div>
   );

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card, Table, Badge, Alert } from 'react-bootstrap';
 import { FaSearch, FaHospital } from "react-icons/fa";
-import { Link } from 'react-router-dom';
 import './findBlood.css';
 
 const cityList = ["Delhi","Mumbai","Bangalore","Kolkata","Chennai","Pune"];
@@ -12,7 +11,7 @@ const dummyResults = [
 ];
 
 const FindBlood = () => {
-  const [filter, setFilter] = useState({bloodGroup:"",city:""});
+  const [filter, setFilter] = useState({ bloodGroup:"", city:"" });
   const [results, setResults] = useState([]);
   const [alert, setAlert] = useState("");
   const [searching, setSearching] = useState(false);
@@ -22,20 +21,29 @@ const FindBlood = () => {
     setAlert('');
     setResults([]);
     setSearching(true);
-    // Simulate async API call
-    setTimeout(()=>{
-      if(!filter.bloodGroup || !filter.city){
+
+    setTimeout(() => {
+      const { bloodGroup, city } = filter;
+
+      if (!bloodGroup || !city.trim()) {
         setAlert("Please select both blood group and city.");
-      }else{
-        // Replace dummyResults with real API result
-        setResults(dummyResults.filter(
-          r=> (filter.bloodGroup === "" || r.group === filter.bloodGroup) &&
-              (filter.city === "" || r.location.toLowerCase().includes(filter.city.toLowerCase()))
-        ));
-        if(results.length === 0) setAlert("No results found for your criteria.");
+        setSearching(false);
+        return;
+      }
+
+      // Filter results
+      const filtered = dummyResults.filter(
+        r => r.group === bloodGroup &&
+             r.location.toLowerCase().includes(city.trim().toLowerCase())
+      );
+
+      if (filtered.length === 0) {
+        setAlert("No results found for your criteria.");
+      } else {
+        setResults(filtered);
       }
       setSearching(false);
-    },800);
+    }, 800);
   };
 
   return (
@@ -48,7 +56,11 @@ const FindBlood = () => {
               <Form onSubmit={handleSearch}>
                 <Row>
                   <Col md={5} sm={6} xs={12} className="mb-2">
-                    <Form.Select value={filter.bloodGroup} onChange={e=>setFilter(f=>({...f,bloodGroup:e.target.value}))} required>
+                    <Form.Select 
+                      value={filter.bloodGroup} 
+                      onChange={e => setFilter(f => ({ ...f, bloodGroup: e.target.value }))}
+                      required
+                    >
                       <option value="">Select Blood Group</option>
                       <option>A+</option><option>A-</option>
                       <option>B+</option><option>B-</option>
@@ -59,9 +71,10 @@ const FindBlood = () => {
                   <Col md={5} sm={6} xs={12} className="mb-2">
                     <Form.Control
                       value={filter.city}
-                      onChange={e=>setFilter(f=>({...f,city:e.target.value}))}
+                      onChange={e => setFilter(f => ({ ...f, city: e.target.value }))}
                       list="cities-list"
-                      placeholder="Enter city" required
+                      placeholder="Enter city"
+                      required
                     />
                     <datalist id="cities-list">
                       {cityList.map(c => <option value={c} key={c}/>)}
@@ -69,23 +82,34 @@ const FindBlood = () => {
                   </Col>
                   <Col md={2} xs={12} className="d-grid mb-2">
                     <Button variant="danger" type="submit" disabled={searching}>
-                      {searching ? "Searching..." : (<><FaSearch/> Search</>)}
+                      {searching ? "Searching..." : (<><FaSearch /> Search</>)}
                     </Button>
                   </Col>
                 </Row>
               </Form>
+
+              {/* Alert */}
               {alert && <Alert variant="warning" className="mt-3 py-2">{alert}</Alert>}
-              {!alert && results.length > 0 &&
+
+              {/* Results Table */}
+              {results.length > 0 &&
                 <Card className="mt-4 mb-1 border-0 bg-white bg-opacity-75">
                   <Card.Body className="p-0">
                     <Table responsive striped bordered hover>
                       <thead>
-                        <tr><th>Bank</th><th>Group</th><th>Units</th><th>City</th><th>Contact</th><th></th></tr>
+                        <tr>
+                          <th>Bank</th>
+                          <th>Group</th>
+                          <th>Units</th>
+                          <th>City</th>
+                          <th>Contact</th>
+                          <th></th>
+                        </tr>
                       </thead>
                       <tbody>
-                        {results.map((r,i) => (
+                        {results.map((r, i) => (
                           <tr key={i}>
-                            <td><FaHospital className="me-1 text-danger"/>{r.bank}</td>
+                            <td><FaHospital className="me-1 text-danger" />{r.bank}</td>
                             <td><Badge bg="danger">{r.group}</Badge></td>
                             <td>{r.units}</td>
                             <td>{r.location}</td>

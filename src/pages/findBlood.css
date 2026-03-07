@@ -1,18 +1,31 @@
+/* Full-screen gradient background for Find Blood page */
 .findblood-bg {
   min-height: 100vh;
-  background: linear-gradient(110deg,#ffebfd 80%,#b7eafc 100%);
-  padding:0;
+  background: linear-gradient(110deg, #ffebfd 80%, #b7eafc 100%);
+  padding: 0;
 }
+
+/* Card styling for search and results */
 .findblood-card {
-  background: rgba(255,255,255,0.94);
+  background: rgba(255, 255, 255, 0.94);
   border-radius: 26px;
-  box-shadow: 0 8px 38px #db578b28;
+  box-shadow: 0 8px 38px rgba(219, 87, 139, 0.16);
+  padding: 2rem;
 }
-input:focus,select:focus {
+
+/* Focus effect for inputs and selects */
+input:focus,
+select:focus,
+textarea:focus {
   border-color: #e96091 !important;
-  box-shadow:0 0 0 2px #ffd5e6a9 !important;
+  box-shadow: 0 0 0 2px rgba(255, 213, 230, 0.66) !important;
   outline: none !important;
 }
-@media (max-width:600px) {
-  .findblood-card{border-radius:17px;padding:0.6rem;}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 600px) {
+  .findblood-card {
+    border-radius: 17px;
+    padding: 0.6rem 1rem;
+  }
 }

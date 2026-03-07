@@ -8,7 +8,7 @@ import './Login.css';
 const AnimatedBlock = ({ show, children }) => (
   <div
     style={{
-      transition: '0.25s ease',
+      transition: 'opacity 0.25s ease, transform 0.25s ease',
       opacity: show ? 1 : 0,
       transform: show ? 'translateY(0)' : 'translateY(6px)',
       pointerEvents: show ? 'auto' : 'none'
@@ -28,6 +28,7 @@ const Login = () => {
   const [pass, setPass] = useState('');
 
   const handleGoogleLogin = () => setAlert('Google login coming soon...');
+  
   const handleSendOtp = e => {
     e.preventDefault();
     setOtpSent(true);
@@ -68,11 +69,7 @@ const Login = () => {
             </h2>
 
             {alert && (
-              <Alert
-                variant="info"
-                dismissible
-                onClose={() => setAlert('')}
-              >
+              <Alert variant="info" dismissible onClose={() => setAlert('')}>
                 {alert}
               </Alert>
             )}
@@ -94,18 +91,21 @@ const Login = () => {
                 onClick={() => {
                   setMode('otp');
                   setOtpSent(false);
+                  setOtp('');
+                  setAlert('');
                 }}
               >
-                <FaPhone className="me-2" />
-                Phone & OTP
+                <FaPhone className="me-2" /> Phone & OTP
               </Button>
 
               <Button
                 variant={mode === 'password' ? 'outline-primary' : 'outline-secondary'}
-                onClick={() => setMode('password')}
+                onClick={() => {
+                  setMode('password');
+                  setAlert('');
+                }}
               >
-                <FaUser className="me-2" />
-                Username / Password
+                <FaUser className="me-2" /> Username / Password
               </Button>
             </div>
 
@@ -138,6 +138,7 @@ const Login = () => {
                         onChange={e => setOtp(e.target.value)}
                         maxLength={6}
                         required
+                        autoFocus
                       />
                     </InputGroup>
                   </Form.Group>

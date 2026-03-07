@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button, Card, Form, Badge, Alert, Carousel, Spinner, Dropdown, Toast, ProgressBar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import heroVideo from "../assets/bg17.mov";
-import partner1 from "../assets/OIP (1).jpg";
-import partner2 from "../assets/mum.jpg";
-import partner3 from "../assets/logo2.png";
-import partner4 from "../assets/logo3.png";
-import partner5 from "../assets/tata.jpg";
-import { FaHandHoldingHeart, FaStethoscope, FaUserFriends, FaBell, FaBriefcaseMedical, FaSearch, FaCalendarAlt, FaUsers, FaChartBar, FaComments, FaShareAlt, FaUserCircle, FaWhatsapp } from 'react-icons/fa';
+import { FaHandHoldingHeart, FaStethoscope, FaUserFriends, FaBell, FaBriefcaseMedical, FaCalendarAlt, FaUsers, FaShareAlt, FaUserCircle, FaWhatsapp } from 'react-icons/fa';
 import { BsArrowRight } from "react-icons/bs";
 import './home.css';
+
+// Replace local images with CDN URLs
+const partner1 = "https://res.cloudinary.com/demo/image/upload/v123456/OIP1.jpg";
+const partner2 = "https://res.cloudinary.com/demo/image/upload/v123456/mum.jpg";
+const partner3 = "https://res.cloudinary.com/demo/image/upload/v123456/logo2.png";
+const partner4 = "https://res.cloudinary.com/demo/image/upload/v123456/logo3.png";
+const partner5 = "https://res.cloudinary.com/demo/image/upload/v123456/tata.jpg";
 
 const AnimatedCounter = ({ end, duration = 1, ...rest }) => {
   const [value, setValue] = useState(0);
@@ -18,10 +19,7 @@ const AnimatedCounter = ({ end, duration = 1, ...rest }) => {
     const increment = end / total;
     const timer = setInterval(() => {
       current++;
-      setValue(curr => {
-        const next = curr + increment;
-        return next >= end ? end : next;
-      });
+      setValue(curr => (curr + increment >= end ? end : curr + increment));
       if (current >= total) clearInterval(timer);
     }, 30);
     return () => clearInterval(timer);
@@ -42,17 +40,6 @@ const donationCamps = [
   { title: 'Youth Blood Donation', date: 'Nov 05, 2024', location: 'University Campus, Pune', organizer: 'Student Union' },
 ];
 
-const topDonors = [
-  { name: "Raj Kumar", units: 15 },
-  { name: "Sana Sharma", units: 12 },
-  { name: "Aditya Jain", units: 10 }
-];
-const mostNeededGroups = [
-  { group: "O-", need: 52 },
-  { group: "A-", need: 37 },
-  { group: "AB-", need: 22 }
-];
-
 const testimonials = [
   { text: '"e-raktkosh helped my father find a rare blood type in an emergency. I am forever grateful to the donor."', name: 'Priya Sharma', role: "Patient's Daughter" },
   { text: '"The process was so simple. Being a registered donor on this platform gives me a sense of purpose."', name: 'Amit Kumar', role: 'Registered Donor' },
@@ -65,18 +52,11 @@ const Home = () => {
   const [showAlert, setShowAlert] = useState(true);
   const [city, setCity] = useState('');
   const [suggest, setSuggest] = useState(cities);
-
-  // Loader/Spinner sim
   const [loading, setLoading] = useState(false);
-
-  // Toast Notification
   const [showToast, setShowToast] = useState(false);
-
-  // Progress bar example for registration
   const [progress, setProgress] = useState(34);
 
   useEffect(() => {
-    // simulate a loading effect
     setLoading(true);
     const timer = setTimeout(() => setLoading(false), 1100);
     return () => clearTimeout(timer);
@@ -112,7 +92,7 @@ const Home = () => {
         </Dropdown>
       </div>
 
-      {/* Section with Loader */}
+      {/* Top Section */}
       <section className="bg-light py-2 border-bottom">
         <Container className="d-flex justify-content-between align-items-center flex-wrap">
           <div>
@@ -133,119 +113,21 @@ const Home = () => {
         </Container>
       </section>
 
-      <div className="figma-landing-bg py-5 px-0" style={{ background: 'linear-gradient(116deg,#f9e4f8 55%, #e6f5fe 100%)' }}>
-        <Container>
-          <Row className="justify-content-center">
-            <Col lg={9} className="text-center">
-              <h1 className="figma-landing-title mb-4">
-                <span style={{ fontWeight: 700, letterSpacing: "3px", color: "#e94061" }}>PULSEPOINT</span>: India's Blood Bank Network
-              </h1>
-              <p className="lead mb-3">Real-Time <b>Blood Search</b>. Smart Donor Tracking. Donation Camps. Hospital & Blood Bank Dashboards.</p>
-              <div className="mt-4">
-                <Form className="search-form-custom mx-auto" style={{ maxWidth: '550px' }}>
-                  {(loading) ? <Spinner animation="border" /> : null}
-                  {/* Search field, autocomplete */}
-                  <Form.Control
-                    type="text"
-                    placeholder="Search city/blood bank..."
-                    value={city}
-                    onChange={e => {
-                      setCity(e.target.value);
-                      setSuggest(cities.filter(c => c.toLowerCase().includes(e.target.value.toLowerCase())));
-                    }}
-                    style={{ marginBottom: "10px" }}
-                  />
-                  {city && (
-                    <ul className="list-group">
-                      {suggest.map((c, idx) => (
-                        <li key={idx} className="list-group-item py-1 px-2" style={{ fontSize: "1em" }}>{c}</li>
-                      ))}
-                    </ul>
-                  )}
-                </Form>
-              </div>
-            </Col>
-          </Row>
-
-          <Row className="mt-5 text-center">
-            <Col md={3}>
-              <Card className="mb-3 shadow-sm border-danger hover-pop">
-                <Card.Body>
-                  <FaUsers className="fs-1 text-danger mb-2" />
-                  <h5>Active Donors</h5>
-                  <h4><AnimatedCounter end={372} /></h4>
-                  <Badge bg="danger">+15 Today</Badge>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={3}>
-              <Card className="mb-3 shadow-sm border-info hover-pop">
-                <Card.Body>
-                  <FaBriefcaseMedical className="fs-1 text-info mb-2" />
-                  <h5>Requests Pending</h5>
-                  <h4><AnimatedCounter end={23} /></h4>
-                  <Badge bg="info">5 New</Badge>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={3}>
-              <Card className="mb-3 shadow-sm border-success hover-pop">
-                <Card.Body>
-                  <FaHandHoldingHeart className="fs-1 text-success mb-2" />
-                  <h5>Total Units Available</h5>
-                  <h4><AnimatedCounter end={410} /></h4>
-                  <Badge bg="success">+32 units this week</Badge>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={3}>
-              <Card className="mb-3 shadow-sm border-primary hover-pop">
-                <Card.Body>
-                  <FaCalendarAlt className="fs-1 text-primary mb-2" />
-                  <h5>Upcoming Camps</h5>
-                  <h4><AnimatedCounter end={5} /></h4>
-                  <Badge bg="primary">New Camp: 12 Oct</Badge>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
-
-          {/* Progress bar for registration (demo) */}
-          <Row className="mt-4">
-            <Col md={7} className="mx-auto">
-              <div className="mb-1 fw-bold">Profile Registration Progress</div>
-              <ProgressBar now={progress} label={`${progress}%`} srOnly style={{ height: "20px", borderRadius: "10px" }} />
-            </Col>
-          </Row>
-
-          {/* Social Share button */}
-          <Row className="mt-2">
-            <Col className="text-center">
-              <Button variant="outline-dark" onClick={handleShare}>
-                <FaShareAlt className="me-2" />
-                Share This Campaign/Site
-              </Button>
-            </Col>
-          </Row>
-          {/* Toast notification for share feedback */}
-          <Toast show={showToast} onClose={() => setShowToast(false)} style={{ position: 'fixed', top: 44, right: 18, zIndex: '3000' }} delay={2100} autohide>
-            <Toast.Header>
-              <strong className="me-auto">Share Feature</strong>
-            </Toast.Header>
-            <Toast.Body>Link copied! You can share manually now.</Toast.Body>
-          </Toast>
-        </Container>
-      </div>
-
+      {/* Hero Section with CDN Video */}
       <div className="hero-section position-relative">
-        <video className="hero-video" src={heroVideo} autoPlay loop muted playsInline />
+        <video className="hero-video" autoPlay loop muted playsInline>
+          <source src="https://res.cloudinary.com/demo/video/upload/v123456/hero3.mov" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
         <div className="hero-overlay" />
         <Container className="hero-content position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center">
           <Row className="align-items-center">
             <Col md={7}>
               <h1>Every Blood Donor is a Hero.</h1>
               <p>A single donation can save up to three lives. Join our community of heroes and make a difference today.</p>
-              <Link to="/register"><Button variant="danger" size="lg" className="mt-3">Become a Donor <BsArrowRight className="ms-2" /></Button></Link>
+              <Link to="/register">
+                <Button variant="danger" size="lg" className="mt-3">Become a Donor <BsArrowRight className="ms-2" /></Button>
+              </Link>
             </Col>
           </Row>
         </Container>
@@ -255,8 +137,7 @@ const Home = () => {
       <section className="section urgent-appeals-section bg-white">
         <Container>
           <h2 className="section-title mb-4">Urgent Appeals</h2>
-          {/* Loader on data */}
-          {loading ? <Spinner animation="border" /> : null}
+          {loading && <Spinner animation="border" />}
           <Row>
             {urgentAppeals.map((appeal, idx) => (
               <Col md={6} lg={3} key={idx} className="mb-4">
@@ -274,7 +155,7 @@ const Home = () => {
         </Container>
       </section>
 
-      {/* Why Donate */}
+      {/* Feature Section */}
       <section className="section bg-light py-5" id="features">
         <Container>
           <h2 className="section-title mb-4">The Importance of Your Donation</h2>
@@ -304,7 +185,7 @@ const Home = () => {
         </Container>
       </section>
 
-      {/* Upcoming Camps */}
+      {/* Donation Camps */}
       <section className="section camps-section bg-white py-5">
         <Container>
           <h2 className="section-title mb-4">Upcoming Donation Camps</h2>
@@ -334,11 +215,11 @@ const Home = () => {
         <Container>
           <h2 className="section-title mb-4">Our Trusted Partners</h2>
           <Row className="align-items-center justify-content-center text-center">
-            <Col md={2} xs={4} className="mb-4"><img src={partner1} alt="Partner 1" className="partner-logo" /></Col>
-            <Col md={2} xs={4} className="mb-4"><img src={partner2} alt="Partner 2" className="partner-logo" /></Col>
-            <Col md={2} xs={4} className="mb-4"><img src={partner3} alt="Partner 3" className="partner-logo" /></Col>
-            <Col md={2} xs={4} className="mb-4"><img src={partner4} alt="Partner 4" className="partner-logo" /></Col>
-            <Col md={2} xs={4} className="mb-4"><img src={partner5} alt="Partner 5" className="partner-logo" /></Col>
+            {[partner1, partner2, partner3, partner4, partner5].map((p, i) => (
+              <Col md={2} xs={4} className="mb-4" key={i}>
+                <img src={p} alt={`Partner ${i+1}`} className="partner-logo" />
+              </Col>
+            ))}
           </Row>
         </Container>
       </section>
@@ -377,6 +258,14 @@ const Home = () => {
       <Button className="pulsechat-fab shadow fab-help" size="lg" variant="success" style={{ zIndex: 9999, position: "fixed", right: "24px", bottom: "20px", borderRadius: "30px", fontSize: "1.2em", boxShadow: "0 3px 14px #4ecdc442" }}>
         <FaWhatsapp className="fs-4" /> Get Help / Chat
       </Button>
+
+      {/* Toast Notification */}
+      <Toast show={showToast} onClose={() => setShowToast(false)} style={{ position: 'fixed', top: 44, right: 18, zIndex: '3000' }} delay={2100} autohide>
+        <Toast.Header>
+          <strong className="me-auto">Share Feature</strong>
+        </Toast.Header>
+        <Toast.Body>Link copied! You can share manually now.</Toast.Body>
+      </Toast>
     </div>
   );
 };

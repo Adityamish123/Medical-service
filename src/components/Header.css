@@ -1,72 +1,84 @@
+/* Navbar Container */
 .replit-navbar {
-  background: #fffffffa !important;
+  background: #fffffffa; /* semi-transparent white */
   border-bottom: 1px solid #ede4ff;
   box-shadow: 0 4px 24px #cabffa19;
   z-index: 9;
-  padding-top: .5rem;
-  padding-bottom: .5rem;
+  padding: 0.5rem 0;
 }
 
+/* Brand Gradient Text */
 .replit-brand-gradient {
-  background: linear-gradient(90deg,#fa4c7c 25%, #873ffc 85%);
+  background: linear-gradient(90deg, #fa4c7c 25%, #873ffc 85%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text; /* Firefox fallback */
+  color: transparent;    /* Firefox fallback */
   font-weight: bold;
   letter-spacing: 2px;
   line-height: 1.08;
 }
 
-.replit-navbar .nav-link, .replit-navbar .navbar-brand {
+/* Navbar links */
+.replit-navbar .nav-link,
+.replit-navbar .navbar-brand {
   font-weight: 600;
   font-size: 1.07rem;
-  color: #1c144f !important;
-  transition: color .14s;
+  color: #1c144f;
+  transition: color 0.14s;
 }
 
-.replit-navbar .nav-link.active, .replit-navbar .nav-link:focus, .replit-navbar .nav-link:hover {
-  color: #fa4c7c !important;
-  background: none !important;
+.replit-navbar .nav-link.active,
+.replit-navbar .nav-link:focus,
+.replit-navbar .nav-link:hover {
+  color: #fa4c7c;
+  background: none;
 }
 
+/* Navbar link spacing */
 .replit-navbar .navbar-nav .nav-link {
-  margin-left: 6px;
-  margin-right: 6px;
+  margin: 0 6px;
   border-radius: 9px;
-  padding-top: 7px !important;
-  padding-bottom: 7px !important;
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
+/* Buttons */
 .replit-navbar .btn {
   font-weight: 700;
   border-radius: 15px;
-  padding-left: 1.3em;
-  padding-right: 1.3em;
+  padding: 0.5rem 1.3rem;
   margin-left: 5px;
   box-shadow: 0 2.5px 9px #e97dbd17;
+  transition: all 0.2s;
 }
 
+/* Main Button Gradient */
 .replit-btn-main {
-  background: linear-gradient(98deg,#fa4c7c 25%, #873ffc 93%)!important;
-  color: #fff !important;
-  border: 0 !important;
+  background: linear-gradient(98deg, #fa4c7c 25%, #873ffc 93%);
+  color: #fff;
+  border: 0;
   font-weight: 700;
-  transition: background .19s;
-}
-.replit-btn-main:hover {
-  background: linear-gradient(91deg,#35e3fc 34%, #fa4c7c 73%)!important;
-  color: #fff !important;
-  box-shadow:0 6px 27px #874fdc19;
+  transition: background 0.19s, box-shadow 0.19s;
 }
 
-@media (max-width:991px) {
+.replit-btn-main:hover {
+  background: linear-gradient(91deg, #35e3fc 34%, #fa4c7c 73%);
+  color: #fff;
+  box-shadow: 0 6px 27px #874fdc19;
+}
+
+/* Responsive Navbar */
+@media (max-width: 991px) {
   .replit-navbar .navbar-collapse {
     background: #fffafd;
     border-radius: 0 0 17px 17px;
-    margin-top:8px;
-    box-shadow:0 4px 30px #ccb5fa22;
+    margin-top: 8px;
+    box-shadow: 0 4px 30px #ccb5fa22;
     padding: 1.2rem 0;
   }
+
   .replit-navbar .navbar-nav .nav-link {
-    margin-bottom:10px;
+    margin-bottom: 10px;
   }
 }

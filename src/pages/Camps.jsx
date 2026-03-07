@@ -6,7 +6,7 @@ import "./camps.css";
 function BlobBg() {
   return (
     <div className="login-blob-bg">
-      <svg width="100vw" height="100vh" viewBox="0 0 800 600">
+      <svg width="100%" height="100%" viewBox="0 0 800 600">
         <defs>
           <radialGradient id="grad-red" r="70%" fx="50%" fy="50%">
             <stop offset="0%" stopColor="#ff3574cc" />
@@ -28,62 +28,51 @@ function BlobBg() {
   );
 }
 
-// Demo sample camps list
 const campList = [
   {
     title: "Mega Donation Drive",
     date: "Oct 15, 2024",
     location: "City Park, Delhi",
     organizer: "Red Cross",
-    description:
-      "Join our city’s biggest drive. Free health check-up for all donors. Certificates on spot!",
+    description: "Join our city’s biggest drive. Free health check-up for all donors. Certificates on spot!",
   },
   {
     title: "Annual Charity Camp",
     date: "Oct 22, 2024",
     location: "Community Hall, Mumbai",
     organizer: "Lions Club",
-    description:
-      "Walk in anytime 10am-5pm. Snacks for all donors. Hospital panel on site.",
+    description: "Walk in anytime 10am-5pm. Snacks for all donors. Hospital panel on site.",
   },
   {
     title: "Youth Blood Donation",
     date: "Nov 05, 2024",
     location: "University Campus, Pune",
     organizer: "Student Union",
-    description:
-      "Student donors get official thank you kits. Campus-wide contest for max participation.",
+    description: "Student donors get official thank you kits. Campus-wide contest for max participation.",
   },
 ];
 
 const Camps = () => {
-  // This function runs when Participate button is clicked
   const handleParticipate = (camp) => {
     alert(`Thank you for choosing to participate in "${camp.title}"!`);
-    // Add more action here if you want (routing, API call, etc.)
   };
 
   return (
-    <div className="login-bg-vibrant">
-      {/* Background image */}
-      <img src="src/assets/bg10.jpg" alt="" className="login-bg-img" />
-      {/* SVG Blobs */}
+    <div className="camps-bg login-bg-vibrant">
+      <img src="src/assets/bg10.jpg" alt="background" className="login-bg-img" />
       <BlobBg />
       <Container className="py-5">
-        <Row className="justify-content-center mb-4">
-          <Col lg={8} className="text-center">
+        <Row className="justify-content-center mb-4 text-center">
+          <Col lg={8}>
             <img
               src="https://cdn-icons-png.flaticon.com/512/910/910205.png"
               alt="logo"
               height="48"
               className="mb-2"
             />
-            <h1 className="camps-title mb-2 fw-bold">
-              Upcoming Blood Donation Camps
-            </h1>
+            <h1 className="camps-title mb-2 fw-bold">Upcoming Blood Donation Camps</h1>
             <p className="lead text-muted">
-              Be a part of our nationwide donation drives and save lives in your
-              community.
+              Be a part of our nationwide donation drives and save lives in your community.
             </p>
           </Col>
         </Row>
@@ -106,10 +95,7 @@ const Camps = () => {
                   </div>
                   <div className="mb-2">{camp.date}</div>
                   <Card.Text>{camp.description}</Card.Text>
-                  <Button
-                    variant="outline-danger"
-                    onClick={() => handleParticipate(camp)}
-                  >
+                  <Button variant="outline-danger" onClick={() => handleParticipate(camp)}>
                     Participate
                   </Button>
                 </Card.Body>

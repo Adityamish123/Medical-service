@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/Fulllogo.png"; // Change this path to your real logo image
+import logo from "../assets/Fulllogo.png"; // Ensure exact casing of file
 
 const NavBar = () => {
   const location = useLocation();
@@ -9,7 +9,8 @@ const NavBar = () => {
   return (
     <Navbar bg="white" expand="lg" className="shadow-sm sticky-top py-2">
       <Container>
-        <Navbar.Brand as={Link} to="/">
+        {/* Brand */}
+        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
           <img
             src={logo}
             alt="Pulsepoint Logo"
@@ -17,7 +18,11 @@ const NavBar = () => {
           />
           Pulsepoint
         </Navbar.Brand>
+
+        {/* Mobile Toggle */}
         <Navbar.Toggle aria-controls="main-navbar-nav" />
+
+        {/* Navbar Links */}
         <Navbar.Collapse id="main-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/" active={location.pathname === "/"}>
@@ -29,6 +34,8 @@ const NavBar = () => {
             <Nav.Link as={Link} to="/donate" active={location.pathname === "/donate"}>
               Donate
             </Nav.Link>
+
+            {/* Dropdown for Camps & Centers */}
             <NavDropdown title="Camps & Centers" id="camps-dropdown">
               <NavDropdown.Item as={Link} to="/camps">
                 Donation Camps
@@ -38,6 +45,8 @@ const NavBar = () => {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
+
+          {/* Right-side actions */}
           <Nav>
             <Nav.Link as={Link} to="/login" active={location.pathname === "/login"}>
               Login
