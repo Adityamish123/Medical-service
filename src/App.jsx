@@ -5,7 +5,6 @@ import Footer from "./components/Footer";
 import NavBar from "./components/Navbar";    
 import HospitalDashboard from './pages/Hospital/HospitalDashboard';
 import Inventory from './pages/Blood-bank/Inventory';
-import BloodBankDashboard from './pages/Blood-bank/BloodBankDashboard';
 import Home from './pages/Home';                
 import Login from './pages/Login';
 import Register from './pages/Register';
