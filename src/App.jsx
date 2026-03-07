@@ -1,13 +1,16 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Home from "./pages/Home";               
-import Login from './pages/Login';
-import Register from './pages/Register';
-import FindBlood from './pages/Findblood';      
-import Donate from './pages/Donate';
-import About from './pages/About';
-import Camps from './pages/Camps';
+
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import FindBlood from "./pages/FindBlood";
+import Donate from "./pages/Donate";
+import About from "./pages/About";
+import Camps from "./pages/Camps";
+import Inventory from "./pages/BloodBank/Inventory";
+
 import BloodBankDashboard from "./pages/BloodBank/BloodBankDashboard";
 
 function App() {
@@ -26,6 +29,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/camps" element={<Camps />} />
             <Route path="/bloodbank" element={<BloodBankDashboard />} />
+            <Route path="/inventory" element={<Inventory />} />
 
           </Routes>
         </main>
