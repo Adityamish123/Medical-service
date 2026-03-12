@@ -1,14 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import FindBlood from "./pages/FindBlood";
-import Donate from "./pages/Donate";
-import About from "./pages/About";
-import Camps from "./pages/Camps";
+import Home from "./pages/Home.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import FindBlood from "./pages/FindBlood.jsx";
+import Donate from "./pages/Donate.jsx";
+import About from "./pages/About.jsx";
+import Camps from "./pages/Camps.jsx";
 import Inventory from "./pages/BloodBank/Inventory";
 import BloodBankDashboard from "./pages/BloodBank/BloodBankDashboard";
 
