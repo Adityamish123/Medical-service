@@ -9,8 +9,8 @@ import FindBlood from "./pages/FindBlood";
 import Donate from "./pages/Donate";
 import About from "./pages/About";
 import Camps from "./pages/Camps";
-import Inventory from "./pages/Bloodbank/Inventory";
-import BloodBankDashboard from "./pages/Bloodbank/BloodBankDashboard";
+import Inventory from "./pages/BloodBank/Inventory";
+import BloodBankDashboard from "./pages/BloodBank/BloodBankDashboard";
 
 function App() {
   return (
