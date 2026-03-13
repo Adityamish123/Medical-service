@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/Fulllogo.png"; // Ensure exact casing of file
+import logo from "../assets/FullLogo.png"; // Ensure exact casing of file
 
 const NavBar = () => {
   const location = useLocation();
