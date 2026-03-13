@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Button } from "react-bootstrap";
 import { FaWhatsapp, FaInstagram, FaTwitter, FaEnvelope } from "react-icons/fa";
 import footerLogo from "../assets/logo3.png"; // Make sure file name matches exactly
-import "./footer.css"; // Make sure file name matches exactly
+import "./Footer.css"; // Make sure file name matches exactly
 
 const Footer = () => {
   return (
