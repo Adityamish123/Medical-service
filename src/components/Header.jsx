@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { FaTint, FaHome } from "react-icons/fa";
-import "./header.css"; // Ensure exact case match
+import "./Header.css"; // Ensure exact case match
 
 const Header = () => {
   const location = useLocation();
