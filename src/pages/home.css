@@ -1,5 +1,5 @@
 /* ==========================
-   Section Styles
+   Section & Layout Styles
 ========================== */
 .section {
   border-radius: 16px;
@@ -9,128 +9,90 @@
   box-shadow: 0 4px 22px #f092be12;
 }
 
-/* Unique section backgrounds */
 .section.urgent-appeals-section { background: linear-gradient(119deg,#fdeef7 0%, #c6ecfc 100%); }
 .section.bg-light { background: linear-gradient(94deg,#edfaff 62%, #ffe0ed 100%); }
-.section.camps-section { background: linear-gradient(125deg,#fff9e3 20%, #e3ffe9 100%); }
-.section.cta-section { background: linear-gradient(124deg,#fee8fa 40%, #eaffef 100%); }
 
 /* ==========================
-   Card Styles
-========================== */
-.card, .feature-card, .camp-card, .blood-card {
-  border-radius: 14px !important;
-  margin-bottom: 20px;
-  padding: 16px 12px;
-  background: #fff;
-  box-shadow: 0 2px 14px #d6b6fd18;
-  font-size: 1rem;
-}
-
-/* Card variations */
-.blood-card { background: linear-gradient(98deg,#fee3f3 75%, #cdf5fc 100%)!important; border-left: 4px solid #e94061; }
-.camp-card { background: linear-gradient(94deg,#fff9e2 68%, #dafed8 100%)!important; border-left: 4px solid #40dc7d; }
-.feature-card { background: linear-gradient(96deg,#f3f7fe 52%, #f6e1fd 100%)!important; border-left: 4px solid #7d4bdc; }
-
-/* ==========================
-   Section Titles
-========================== */
-.section-title {
-  font-size: 1.28rem;
-  font-weight: 700;
-  padding: 9px 0 14px 0;
-  color: #46168d;
-  text-shadow: 0 1px 7px #e3d7fb18;
-  border-bottom: 2px solid #eeeafa;
-  margin-bottom: 13px;
-}
-
-/* ==========================
-   Hero Section & Video
+   Hero / Find Blood Video Section (FIXED)
 ========================== */
 .hero-section {
   position: relative;
-  min-height: 400px;
   width: 100%;
+  height: 400px; /* Standard desktop height */
   overflow: hidden;
   background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-bottom: 35px;
 }
+
 .hero-video {
-  width: 100vw;
-  max-width: 100%;
-  height: 420px;
-  object-fit: cover;
-  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Prevents video stretching */
+  z-index: 1;
 }
+
 .hero-overlay {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, #00000033 0%, #e9406199 110%);
+  background: linear-gradient(135deg, rgba(233, 64, 97, 0.6) 0%, rgba(70, 22, 141, 0.4) 100%);
   z-index: 2;
   pointer-events: none;
 }
-.hero-content { z-index: 3; position: relative; }
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1000px;
+  padding: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+/* Form styling inside video */
+.search-box-container {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  color: #333;
+}
 
 /* ==========================
-   Floating FAB & Dropdown
+   Card & Partner Styles
 ========================== */
-.fab-help {
-  position: fixed !important;
-  right: 22px;
-  bottom: 19px;
-  border-radius: 31px !important;
-  font-size: 1.11em !important;
-  box-shadow: 0 4px 19px #4ecdc442;
-  z-index: 3005;
+.blood-card { 
+  background: linear-gradient(98deg,#fee3f3 75%, #cdf5fc 100%)!important; 
+  border-left: 4px solid #e94061;
+  border-radius: 14px;
 }
-.profile-dropdown-wrap {
-  position: absolute;
-  right: 19px;
-  top: 17px;
-  z-index: 2002;
+
+.partner-logo {
+  height: 50px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: 0.3s;
+  margin: 10px;
 }
+.partner-logo:hover { filter: grayscale(0%); }
 
 /* ==========================
    Responsive Styles
 ========================== */
 @media (max-width: 991px) {
-  .hero-video { height: 220px; }
-  .hero-section { min-height: 220px; }
+  .hero-section { height: 450px; } /* More height for stacked form */
 }
 
-@media (max-width: 700px){
-  .section, .feature-card, .camp-card, .blood-card, .card {
-    border-radius: 13px !important;
-    margin-bottom: 16px !important;
-    box-shadow: 0 2px 10px #c2a4fd18 !important;
-    padding: 10px 4px !important;
-    font-size: .95rem !important;
-  }
-  .card-body, .shadow-sm, .mb-3 { padding: 10px 4px !important; }
-  .badge, .bg-success, .bg-info, .bg-danger, .bg-primary {
-    font-size: 0.79em !important;
-    padding: 4px 12px !important;
-    border-radius: 8px !important;
-    margin-bottom: 3px !important;
-  }
-  h1, .section-title, h4, h5 { font-size: 1.07rem !important; margin-bottom: 7px !important; }
-  h1.figma-landing-title { font-size: 1.18rem !important; }
-  .fs-1, .fs-2, .feature-icon, .text-danger, .text-success, .text-info, .text-primary, .text-warning { font-size: 1.32rem !important; margin-bottom: 4px !important; }
-  .feature-icon { font-size: 1.27rem !important; margin-bottom: 5px !important; }
-  .btn, .btn-lg, .btn-danger, .btn-outline-danger, .btn-outline-primary { font-size: .96rem !important; padding: 7px 15px !important; border-radius: 11px !important; }
-  .blockquote, .blockquote-footer, .card-text, .lead { font-size: .97rem !important; }
-}
-
-@media (max-width:600px){
-  .section {
-    margin-bottom: 38px !important;
-    box-shadow: 0 1.5px 16px #b595f622 !important;
-    border-top: 2.5px solid #f3e2fa;
-    border-bottom: 2.5px solid #e3ebfa;
-    padding-top: 16px !important;
-    padding-bottom: 12px !important;
-  }
-  .partner-logo { margin: 4px 4px !important; height: 33px !important; }
+@media (max-width: 600px) {
+  .hero-section { height: auto; padding: 40px 0; border-radius: 0; }
+  .hero-video { height: 100%; }
+  .search-box-container { padding: 15px; margin: 0 10px; }
 }

@@ -11,7 +11,8 @@ const AnimatedBlock = ({ show, children }) => (
       transition: 'opacity 0.25s ease, transform 0.25s ease',
       opacity: show ? 1 : 0,
       transform: show ? 'translateY(0)' : 'translateY(6px)',
-      pointerEvents: show ? 'auto' : 'none'
+      pointerEvents: show ? 'auto' : 'none',
+      display: show ? 'block' : 'none'
     }}
   >
     {children}
@@ -47,10 +48,14 @@ const Login = () => {
 
   return (
     <div className="login-bg-vibrant">
-      {/* Background Image */}
-      <img src="/assets/bg19.jpeg" alt="" className="login-bg-img" />
+      {/* Background Image from Cloudinary */}
+      <img 
+        src="https://res.cloudinary.com/dwgvjoj5y/image/upload/v1773420905/blood22_jjcty8.webp" 
+        alt="Blood Donation Background" 
+        className="login-bg-img" 
+      />
 
-      {/* SVG Blob Background */}
+      {/* SVG Blob Background for extra depth */}
       <BlobBg />
 
       <Container className="login-flex-center">
@@ -60,7 +65,7 @@ const Login = () => {
               <img
                 src="https://cdn-icons-png.flaticon.com/512/910/910205.png"
                 alt="logo"
-                height="48"
+                height="55"
               />
             </div>
 
@@ -69,7 +74,7 @@ const Login = () => {
             </h2>
 
             {alert && (
-              <Alert variant="info" dismissible onClose={() => setAlert('')}>
+              <Alert variant="info" dismissible onClose={() => setAlert('')} className="py-2 small">
                 {alert}
               </Alert>
             )}
@@ -77,36 +82,39 @@ const Login = () => {
             {/* AUTH MODE BUTTONS */}
             <div className="d-grid gap-2 mb-4">
               <Button
-                className="login-google-btn"
+                className="login-google-btn shadow-sm"
                 variant="light"
-                size="lg"
                 onClick={handleGoogleLogin}
               >
-                <FaGoogle className="me-2 text-primary fs-5" />
+                <FaGoogle className="me-2 text-primary" />
                 Continue with Google
               </Button>
 
-              <Button
-                variant={mode === 'otp' ? 'outline-success' : 'outline-secondary'}
-                onClick={() => {
-                  setMode('otp');
-                  setOtpSent(false);
-                  setOtp('');
-                  setAlert('');
-                }}
-              >
-                <FaPhone className="me-2" /> Phone & OTP
-              </Button>
+              <div className="d-flex gap-2">
+                <Button
+                  variant={mode === 'otp' ? 'danger' : 'outline-danger'}
+                  className="w-50 small-btn"
+                  onClick={() => {
+                    setMode('otp');
+                    setOtpSent(false);
+                    setOtp('');
+                    setAlert('');
+                  }}
+                >
+                  <FaPhone className="me-1" /> OTP
+                </Button>
 
-              <Button
-                variant={mode === 'password' ? 'outline-primary' : 'outline-secondary'}
-                onClick={() => {
-                  setMode('password');
-                  setAlert('');
-                }}
-              >
-                <FaUser className="me-2" /> Username / Password
-              </Button>
+                <Button
+                  variant={mode === 'password' ? 'danger' : 'outline-danger'}
+                  className="w-50 small-btn"
+                  onClick={() => {
+                    setMode('password');
+                    setAlert('');
+                  }}
+                >
+                  <FaUser className="me-1" /> Password
+                </Button>
+              </div>
             </div>
 
             {/* OTP FORM */}
@@ -114,10 +122,10 @@ const Login = () => {
               <Form onSubmit={otpSent ? handleOtpLogin : handleSendOtp}>
                 <Form.Group className="mb-3">
                   <InputGroup>
-                    <InputGroup.Text><FaPhone /></InputGroup.Text>
+                    <InputGroup.Text className="bg-white border-end-0"><FaPhone className="text-danger"/></InputGroup.Text>
                     <Form.Control
                       type="tel"
-                      placeholder="10-digit phone number"
+                      placeholder="Enter Phone Number"
                       value={phone}
                       onChange={e => setPhone(e.target.value)}
                       required
@@ -130,10 +138,10 @@ const Login = () => {
                 {otpSent && (
                   <Form.Group className="mb-3">
                     <InputGroup>
-                      <InputGroup.Text><FaSms /></InputGroup.Text>
+                      <InputGroup.Text className="bg-white border-end-0"><FaSms className="text-danger"/></InputGroup.Text>
                       <Form.Control
                         type="text"
-                        placeholder="Enter OTP"
+                        placeholder="Enter 6-digit OTP"
                         value={otp}
                         onChange={e => setOtp(e.target.value)}
                         maxLength={6}
@@ -144,11 +152,7 @@ const Login = () => {
                   </Form.Group>
                 )}
 
-                <Button
-                  type="submit"
-                  variant="success"
-                  className="w-100 login-btn-wide"
-                >
+                <Button type="submit" variant="danger" className="w-100 login-btn-wide fw-bold">
                   {otpSent ? 'Login' : 'Send OTP'}
                 </Button>
               </Form>
@@ -159,7 +163,7 @@ const Login = () => {
               <Form onSubmit={handlePasswordLogin}>
                 <Form.Group className="mb-3">
                   <InputGroup>
-                    <InputGroup.Text><FaUser /></InputGroup.Text>
+                    <InputGroup.Text className="bg-white border-end-0"><FaUser className="text-danger"/></InputGroup.Text>
                     <Form.Control
                       type="text"
                       placeholder="Username or Email"
@@ -172,7 +176,7 @@ const Login = () => {
 
                 <Form.Group className="mb-3">
                   <InputGroup>
-                    <InputGroup.Text><FaKey /></InputGroup.Text>
+                    <InputGroup.Text className="bg-white border-end-0"><FaKey className="text-danger"/></InputGroup.Text>
                     <Form.Control
                       type="password"
                       placeholder="Password"
@@ -183,27 +187,20 @@ const Login = () => {
                   </InputGroup>
                 </Form.Group>
 
-                <Button
-                  type="submit"
-                  variant="primary"
-                  className="w-100 login-btn-wide"
-                >
+                <Button type="submit" variant="danger" className="w-100 login-btn-wide fw-bold">
                   Login
                 </Button>
 
-                <Link
-                  to="/forgot"
-                  className="d-block text-center small mt-2 text-decoration-none"
-                >
+                <Link to="/forgot" className="d-block text-center small mt-3 text-muted text-decoration-none">
                   Forgot password?
                 </Link>
               </Form>
             </AnimatedBlock>
 
-            <div className="text-center mt-4">
-              New here?{' '}
-              <Link to="/register" className="login-link-new">
-                Create account
+            <div className="text-center mt-4 pt-2 border-top">
+              New to BloodBank?{' '}
+              <Link to="/register" className="login-link-new fw-bold text-decoration-none">
+                Join Now
               </Link>
             </div>
           </Card.Body>
@@ -213,29 +210,19 @@ const Login = () => {
   );
 };
 
-/* SVG Blob Background */
+/* Background decoration component */
 function BlobBg() {
   return (
     <div className="login-blob-bg">
       <svg viewBox="0 0 800 600" width="100%" height="100%">
         <defs>
           <radialGradient id="grad-red" r="70%">
-            <stop offset="0%" stopColor="#ff3574cc" />
-            <stop offset="100%" stopColor="#ffffff00" />
-          </radialGradient>
-          <radialGradient id="grad-blue" r="70%">
-            <stop offset="0%" stopColor="#55c6ffcc" />
+            <stop offset="0%" stopColor="#ff357466" />
             <stop offset="100%" stopColor="#ffffff00" />
           </radialGradient>
         </defs>
-
-        <ellipse cx="560" cy="460" rx="220" ry="95" fill="url(#grad-red)">
-          <animate attributeName="rx" values="220;170;220" dur="9s" repeatCount="indefinite" />
-        </ellipse>
-
-        <ellipse cx="200" cy="160" rx="180" ry="80" fill="url(#grad-blue)">
-          <animate attributeName="rx" values="180;140;180" dur="7s" repeatCount="indefinite" />
-        </ellipse>
+        <circle cx="10%" cy="10%" r="150" fill="url(#grad-red)" />
+        <circle cx="90%" cy="90%" r="200" fill="url(#grad-red)" />
       </svg>
     </div>
   );

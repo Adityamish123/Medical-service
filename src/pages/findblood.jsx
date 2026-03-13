@@ -31,7 +31,6 @@ const FindBlood = () => {
         return;
       }
 
-      // Filter results
       const filtered = dummyResults.filter(
         r => r.group === bloodGroup &&
              r.location.toLowerCase().includes(city.trim().toLowerCase())
@@ -50,71 +49,72 @@ const FindBlood = () => {
     <div className="findblood-bg">
       <Container className="py-5">
         <Row className="justify-content-center">
-          <Col lg={7} md={10}>
+          <Col lg={9} md={12}>
             <Card className="findblood-card shadow border-0 p-4">
-              <h2 className="mb-3 text-center text-danger">Find Blood Availability</h2>
+              <h2 className="mb-4 text-center text-danger fw-bold">Find Blood Availability</h2>
               <Form onSubmit={handleSearch}>
-                <Row>
-                  <Col md={5} sm={6} xs={12} className="mb-2">
+                <Row className="g-3">
+                  <Col md={5}>
+                    <Form.Label className="fw-bold small">Blood Group</Form.Label>
                     <Form.Select 
                       value={filter.bloodGroup} 
                       onChange={e => setFilter(f => ({ ...f, bloodGroup: e.target.value }))}
                       required
                     >
-                      <option value="">Select Blood Group</option>
+                      <option value="">Select Group</option>
                       <option>A+</option><option>A-</option>
                       <option>B+</option><option>B-</option>
                       <option>O+</option><option>O-</option>
                       <option>AB+</option><option>AB-</option>
                     </Form.Select>
                   </Col>
-                  <Col md={5} sm={6} xs={12} className="mb-2">
+                  <Col md={5}>
+                    <Form.Label className="fw-bold small">City</Form.Label>
                     <Form.Control
                       value={filter.city}
                       onChange={e => setFilter(f => ({ ...f, city: e.target.value }))}
                       list="cities-list"
-                      placeholder="Enter city"
+                      placeholder="Enter city name..."
                       required
                     />
                     <datalist id="cities-list">
                       {cityList.map(c => <option value={c} key={c}/>)}
                     </datalist>
                   </Col>
-                  <Col md={2} xs={12} className="d-grid mb-2">
-                    <Button variant="danger" type="submit" disabled={searching}>
-                      {searching ? "Searching..." : (<><FaSearch /> Search</>)}
+                  <Col md={2} className="d-flex align-items-end">
+                    <Button variant="danger" type="submit" className="w-100 py-2 fw-bold" disabled={searching}>
+                      {searching ? "..." : <><FaSearch /> Search</>}
                     </Button>
                   </Col>
                 </Row>
               </Form>
 
-              {/* Alert */}
-              {alert && <Alert variant="warning" className="mt-3 py-2">{alert}</Alert>}
+              {alert && <Alert variant="warning" className="mt-4 border-0 shadow-sm">{alert}</Alert>}
 
               {/* Results Table */}
               {results.length > 0 &&
-                <Card className="mt-4 mb-1 border-0 bg-white bg-opacity-75">
+                <Card className="mt-4 border-0 results-card overflow-hidden">
                   <Card.Body className="p-0">
-                    <Table responsive striped bordered hover>
-                      <thead>
+                    <Table responsive hover className="mb-0">
+                      <thead className="bg-danger text-white">
                         <tr>
-                          <th>Bank</th>
-                          <th>Group</th>
-                          <th>Units</th>
-                          <th>City</th>
-                          <th>Contact</th>
-                          <th></th>
+                          <th className="py-3">Bank Name</th>
+                          <th className="py-3">Group</th>
+                          <th className="py-3">Units</th>
+                          <th className="py-3">City</th>
+                          <th className="py-3">Contact</th>
+                          <th className="py-3">Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         {results.map((r, i) => (
                           <tr key={i}>
-                            <td><FaHospital className="me-1 text-danger" />{r.bank}</td>
-                            <td><Badge bg="danger">{r.group}</Badge></td>
-                            <td>{r.units}</td>
+                            <td className="py-3"><FaHospital className="me-2 text-danger" />{r.bank}</td>
+                            <td><Badge bg="danger" className="px-3">{r.group}</Badge></td>
+                            <td className="fw-bold">{r.units}</td>
                             <td>{r.location}</td>
                             <td>{r.contact}</td>
-                            <td><Button variant="outline-primary" size="sm">Request</Button></td>
+                            <td><Button variant="outline-primary" size="sm" className="rounded-pill px-3">Request</Button></td>
                           </tr>
                         ))}
                       </tbody>

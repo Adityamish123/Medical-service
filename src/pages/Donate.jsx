@@ -26,7 +26,17 @@ const Donate = () => {
 
   return (
     <div className="donate-bg">
-      <Container className="py-5">
+      {/* Video Background */}
+      <video className="donate-video-bg" autoPlay loop muted playsInline>
+        <source 
+          src="https://res.cloudinary.com/dwgvjoj5y/video/upload/v1773420962/hero2_dmzpp1.mp4" 
+          type="video/mp4" 
+        />
+      </video>
+      {/* Dark Overlay for better readability */}
+      <div className="donate-overlay"></div>
+
+      <Container className="py-5 donate-content">
         <Row className="justify-content-center">
           <Col md={8} lg={7}>
             <Card className="shadow donate-card p-4">
@@ -41,16 +51,18 @@ const Donate = () => {
               </div>
 
               {submitted ? (
-                <Alert variant="success" className="text-center">
-                  Thank you, {donor.name || "Donor"}! You will be contacted soon when someone needs your blood type.
+                <Alert variant="success" className="text-center py-4 rounded-4">
+                  <h4 className="fw-bold">Registration Successful!</h4>
+                  Thank you, <b>{donor.name}</b>! You will be contacted soon when someone needs your blood type.
                 </Alert>
               ) : (
                 <Form onSubmit={handleSubmit}>
                   <Form.Group className="mb-3" controlId="donorName">
-                    <Form.Label>Full Name</Form.Label>
+                    <Form.Label className="fw-bold small">Full Name</Form.Label>
                     <Form.Control
                       type="text"
                       name="name"
+                      placeholder="Enter your name"
                       required
                       value={donor.name}
                       onChange={handleChange}
@@ -58,10 +70,11 @@ const Donate = () => {
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="donorEmail">
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label className="fw-bold small">Email Address</Form.Label>
                     <Form.Control
                       type="email"
                       name="email"
+                      placeholder="example@gmail.com"
                       required
                       value={donor.email}
                       onChange={handleChange}
@@ -71,10 +84,11 @@ const Donate = () => {
                   <Row>
                     <Col md={6}>
                       <Form.Group className="mb-3" controlId="donorContact">
-                        <Form.Label>Contact Number</Form.Label>
+                        <Form.Label className="fw-bold small">Contact Number</Form.Label>
                         <Form.Control
                           type="text"
                           name="contact"
+                          placeholder="Phone number"
                           required
                           value={donor.contact}
                           onChange={handleChange}
@@ -84,7 +98,7 @@ const Donate = () => {
 
                     <Col md={6}>
                       <Form.Group className="mb-3" controlId="donorGroup">
-                        <Form.Label>Blood Group</Form.Label>
+                        <Form.Label className="fw-bold small">Blood Group</Form.Label>
                         <Form.Select
                           name="bloodGroup"
                           required
@@ -92,24 +106,20 @@ const Donate = () => {
                           onChange={handleChange}
                         >
                           <option value="">Select</option>
-                          <option>O+</option>
-                          <option>O-</option>
-                          <option>A+</option>
-                          <option>A-</option>
-                          <option>B+</option>
-                          <option>B-</option>
-                          <option>AB+</option>
-                          <option>AB-</option>
+                          {['O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-'].map(bg => (
+                            <option key={bg} value={bg}>{bg}</option>
+                          ))}
                         </Form.Select>
                       </Form.Group>
                     </Col>
                   </Row>
 
                   <Form.Group className="mb-3" controlId="donorCity">
-                    <Form.Label>City</Form.Label>
+                    <Form.Label className="fw-bold small">City</Form.Label>
                     <Form.Control
                       type="text"
                       name="city"
+                      placeholder="e.g. Delhi, Mumbai"
                       required
                       value={donor.city}
                       onChange={handleChange}
@@ -117,11 +127,12 @@ const Donate = () => {
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="donorMessage">
-                    <Form.Label>Special Message (optional)</Form.Label>
+                    <Form.Label className="fw-bold small">Special Message (optional)</Form.Label>
                     <Form.Control
                       as="textarea"
                       rows={2}
                       name="message"
+                      placeholder="Any specific timing or details..."
                       value={donor.message}
                       onChange={handleChange}
                     />
@@ -130,7 +141,7 @@ const Donate = () => {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-100 replit-btn-main"
+                    className="w-100 replit-btn-main mt-2 py-3"
                   >
                     Pledge to Donate
                   </Button>

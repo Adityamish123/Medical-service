@@ -1,90 +1,85 @@
-/* Donate Section Background */
+/* Container must be relative for absolute video */
 .donate-bg {
-  min-height: 100vh;
-  background: linear-gradient(115deg, #fff5fd 50%, #eaf7fa 100%);
   position: relative;
+  min-height: 100vh;
+  width: 100%;
   overflow: hidden;
-  padding-bottom: 3rem;
+  display: flex;
+  align-items: center;
 }
 
-/* Donate Cards */
+/* Video Background Styling */
+.donate-video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+/* Dark Overlay for Video */
+.donate-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55); /* Adjust opacity for darker/lighter effect */
+  z-index: -1;
+}
+
+/* Ensure content stays on top */
+.donate-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Glassmorphism for Donate Card */
 .donate-card {
-  border-radius: 24px;
-  background: #fff;
-  box-shadow: 0 8px 38px rgba(219, 87, 139, 0.09), 0 2px 2.5px rgba(135, 79, 252, 0.08);
-  border: 0;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
 }
 
 .donate-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 45px rgba(219, 87, 139, 0.12), 0 4px 5px rgba(135, 79, 252, 0.1);
+  transform: translateY(-8px);
 }
 
-/* Hero Icon */
+/* Hero Title (Adjusted for dark bg) */
+.donate-hero-title {
+  font-size: 2rem;
+  font-weight: 900;
+  background: linear-gradient(90deg, #fa4c7c 10%, #873ffc 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 10px;
+}
+
 .donate-heroicon {
   color: #fa4c7c;
   font-size: 3.5rem;
-  background: linear-gradient(120deg, #ffdafa 55%, #b8eafc 100%);
-  border-radius: 19px;
-  box-shadow: 0 5px 18px rgba(250, 76, 124, 0.14);
-  margin-bottom: 8px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
+  background: white;
+  border-radius: 22px;
+  padding: 14px;
+  box-shadow: 0 8px 20px rgba(250, 76, 124, 0.2);
 }
 
-/* Hero Title */
-.donate-hero-title {
-  font-size: 2.2rem;
-  font-weight: 900;
-  letter-spacing: 1.2px;
-  background: linear-gradient(90deg, #fa4c7c 32%, #873ffc 89%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 1rem;
-}
-
-/* Gradient Buttons */
+/* Buttons and Form inputs as per previous style */
 .replit-btn-main {
   background: linear-gradient(92deg, #fa4c7c 30%, #35e3fc 80%) !important;
   color: #fff !important;
   border: 0 !important;
   font-weight: 700;
-  border-radius: 16px;
-  box-shadow: 0 3px 18px rgba(253, 167, 232, 0.1);
-  transition: all 0.18s ease-in-out;
+  border-radius: 18px;
+  box-shadow: 0 5px 20px rgba(250, 76, 124, 0.3);
 }
 
 .replit-btn-main:hover {
-  background: linear-gradient(91deg, #35e3fc 35%, #fa4c7c 80%) !important;
-  color: #fff !important;
-  box-shadow: 0 8px 28px rgba(135, 79, 252, 0.16);
-  transform: translateY(-2px);
-}
-
-/* Form Inputs */
-input, select, textarea {
-  border-radius: 14px !important;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #ddd;
-  outline: none;
-  transition: border 0.15s ease, box-shadow 0.15s ease;
-}
-
-input:focus, select:focus, textarea:focus {
-  border-color: #fa4c7c;
-  box-shadow: 0 0 6px rgba(250, 76, 124, 0.3);
-}
-
-/* Responsive Adjustments */
-@media (max-width: 991px) {
-  .donate-hero-title {
-    font-size: 1.9rem;
-  }
-
-  .donate-card {
-    margin-bottom: 1rem;
-  }
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(250, 76, 124, 0.4);
 }

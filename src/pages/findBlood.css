@@ -1,31 +1,28 @@
-/* Full-screen gradient background for Find Blood page */
+
+
 .findblood-bg {
+  /* Background Image set with overlay */
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+              url('https://res.cloudinary.com/dwgvjoj5y/image/upload/v1773420581/ChatGPT_Image_Mar_13_2026_09_17_54_PM_xiqjhe.png');
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Parallax effect ke liye */
   min-height: 100vh;
-  background: linear-gradient(110deg, #ffebfd 80%, #b7eafc 100%);
-  padding: 0;
+  display: flex;
+  align-items: center;
 }
 
-/* Card styling for search and results */
+/* Card ko thoda transparent (glassmorphism) banane ke liye */
 .findblood-card {
-  background: rgba(255, 255, 255, 0.94);
-  border-radius: 26px;
-  box-shadow: 0 8px 38px rgba(219, 87, 139, 0.16);
-  padding: 2rem;
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(8px);
+  border-radius: 15px !important;
 }
 
-/* Focus effect for inputs and selects */
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: #e96091 !important;
-  box-shadow: 0 0 0 2px rgba(255, 213, 230, 0.66) !important;
-  outline: none !important;
-}
-
-/* Responsive adjustments for small screens */
-@media (max-width: 600px) {
-  .findblood-card {
-    border-radius: 17px;
-    padding: 0.6rem 1rem;
-  }
+/* Results table container */
+.results-card {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-radius: 10px !important;
 }

@@ -5,11 +5,11 @@ import "./about.css";
 
 const About = () => (
   <div className="about-bg">
+    {/* Background image is handled in CSS */}
     <Container className="py-5">
       <Row className="justify-content-center mb-5">
         <Col lg={9} md={11}>
           <Card className="shadow p-4 about-card">
-
             {/* Header */}
             <div className="text-center mb-3">
               <FaTint className="about-icon-main" />
@@ -62,10 +62,10 @@ const About = () => (
 
             {/* Mission */}
             <div className="mb-4 text-center">
-              <h5 className="fw-bold mb-3">Our Mission</h5>
+              <h5 className="fw-bold mb-3 text-danger">Our Mission</h5>
               <p className="text-muted">
                 Pulsepoint Blood Bank Network aims to bring hope and action together. 
-                Our platform bridges the gap between urgent demand and willing donors, so no one is left waiting for life-saving blood.
+                Our platform bridges the gap between urgent demand and willing donors.
               </p>
             </div>
 
@@ -73,10 +73,9 @@ const About = () => (
             <div className="mb-4">
               <h6 className="fw-bold text-center text-danger mb-2">Technology with a Heart</h6>
               <ul className="about-list text-start">
-                <li><b>Smart Alerts:</b> Immediate SMS & WhatsApp notifications for matching donors and blood requests.</li>
-                <li><b>Verified Profiles:</b> Secure signup, hospital and donor verification for trustworthy interactions.</li>
-                <li><b>Privacy First:</b> All user data protected with advanced encryption and zero third-party sharing.</li>
-                <li><b>Live Dashboard:</b> Real-time camp and request tracking, donor history, and analytics for organizers.</li>
+                <li><b>Smart Alerts:</b> Immediate SMS & WhatsApp notifications.</li>
+                <li><b>Verified Profiles:</b> Secure signup and hospital verification.</li>
+                <li><b>Privacy First:</b> All user data protected with encryption.</li>
               </ul>
             </div>
 
@@ -86,36 +85,24 @@ const About = () => (
               <div className="mb-2">
                 <span className="me-3"><b>50,000+</b> units donated</span>
                 <span className="me-3"><b>1,200+</b> camps organized</span>
-                <span><b>18,000+</b> lives touched</span>
               </div>
-              <div>Every drop makes a difference. Every donor becomes a hero.</div>
             </div>
 
             {/* Call to Action */}
-            <div className="about-cta text-center mb-4">
-              <p>Ready to join, donate, or seek help?</p>
-              <Button as="a" href="/register" variant="danger" className="me-2">
+            <div className="about-cta text-center mb-4 justify-content-center">
+              <p className="w-100 mb-2">Ready to join, donate, or seek help?</p>
+              <Button as="a" href="/register" variant="danger" className="me-2 px-4">
                 Become a Donor
               </Button>
-              <Button as="a" href="/find-blood" variant="outline-primary" className="fw-bold">
+              <Button as="a" href="/find-blood" variant="outline-primary" className="fw-bold px-4">
                 Find Blood Now
               </Button>
-            </div>
-
-            {/* Team */}
-            <div className="text-center text-secondary mb-3">
-              <h6 className="fw-bold mb-2">The Team</h6>
-              <div>
-                <span className="me-3"><b>Aditya Raj Mishra</b>, Founder</span>
-                <span><b>Saurav Singh</b>, Community Lead</span>
-              </div>
             </div>
 
             {/* Help */}
             <div className="text-center text-secondary" style={{ fontSize: "0.95rem" }}>
               For any help: WhatsApp <b>+91-6203435682</b>
             </div>
-
           </Card>
         </Col>
       </Row>
