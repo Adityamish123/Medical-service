@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/home.jsx";
-import Login from "./pages/Login.jsx";
+import Login from "./pages/login.jsx";
 import Register from "./pages/register.jsx";
 import FindBlood from "./pages/findBlood.jsx";
 import Donate from "./pages/Donate.jsx";
